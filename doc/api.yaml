@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Tiny URL
+  description: Contract describes APIs to access or create a shorter version of url.
+  contact:
+    email: utkarshofficio@gmail.com
+  version: 1.0.11
+servers:
+  - url: https://miniurl/v1
+tags:
+  - name: miniurl
+    description: Access/Create shortenedURLs
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /{id}:
+    get:
+      tags:
+       - miniurl
+      summary: Redirects to the url pointed to by id
+      description: Fetches long url pointed by id and redirects to it.
+      operationId: resolveUrl
+      parameters:
+        - name : id
+          in: path
+          description: ID of the miniURL
+          required: true
+          schema:
+            type: string
+      responses:
+        '302':
+          description: redirect to original url
+        '404':
+          description: not found
+        '400':
+          description: client side error - validation failed
+        '429':
+          description: ratelimit exceeded
+        '500':
+          description: server side error
+  
+  /create:
+    put:
+      tags:
+        - miniurl
+      summary: Creates a shorter URL.
+      description: Idempotently creates the shorter URL.(Multiple calls just update expires_at)
+      operationId: createShortURl
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateShortUrlRequest"
+      responses:
+        '201':
+          description: created Successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateShortUrlResponse"
+        '400':
+          description: client side error - validation failed
+        '429':
+          description: ratelimit exceeded.
+        '500':
+          description: server side error.
+
+  
+components:
+  schemas:
+    CreateShortUrlRequest:
+      required:
+        - url
+      type: object
+      properties:
+        url:
+          type: string
+        alias:
+          type: string
+          description: custom url name (max length - 16)
+    
+    CreateShortUrlResponse:
+      required:
+        - url
+      type: object
+      properties:
+        url:
+          type: string
