@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfiguration {
 
-    @Value("${zookeeper.port}")
+    @Value("${application.zookeeper.server}")
     private String hostPort;
 
     @Bean
