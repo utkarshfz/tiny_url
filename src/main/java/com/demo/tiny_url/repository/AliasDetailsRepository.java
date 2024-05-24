@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface AliasDetailsRepository extends CrudRepository<String, AliasDetails> {
+public interface AliasDetailsRepository extends CrudRepository<AliasDetails, String> {
     Optional<AliasDetails> findById(String id);
-    void save(AliasDetails aliasDetails);
+    AliasDetails save(AliasDetails aliasDetails);
 }

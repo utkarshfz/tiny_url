@@ -5,7 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface ShortUrlDetailsRepository extends CrudRepository<String, ShortUrlDetails> {
+public interface ShortUrlDetailsRepository extends CrudRepository<ShortUrlDetails, String> {
+
+    @Override
     Optional<ShortUrlDetails> findById(String id);
-    void save(ShortUrlDetails shortUrlDetails);
+
+    @Override
+    ShortUrlDetails save(ShortUrlDetails shortUrlDetails);
 }

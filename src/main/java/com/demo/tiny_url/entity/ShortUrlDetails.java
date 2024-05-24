@@ -3,9 +3,11 @@ package com.demo.tiny_url.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 import java.sql.Date;
 
+@Getter
 @Entity
 public class ShortUrlDetails {
 
@@ -16,6 +18,6 @@ public class ShortUrlDetails {
     @Column(name = "long_url")
     private String longUrl;
 
-    @Column(name = "expries_at")
+    @Column(name = "expires_at")
     private Date expiresAt;
 }
