@@ -8,10 +8,12 @@ import com.demo.tiny_url.repository.ShortUrlDetailsRepository;
 import com.demo.tiny_url.service.counter.CounterService;
 import com.demo.tiny_url.util.ApplicationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Component
 public class CreateShortUrlServiceImpl implements CreateShortUrlService{
 
     //should not include base62 characters
