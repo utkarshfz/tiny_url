@@ -26,7 +26,7 @@ repositories {
 
 
 flyway {
-	url = 'jdbc:postgresql://localhost:5432/miniurl'
+	url = 'jdbc:postgresql://localhost:5433/tiny_url'
 	user = 'postgres'
 	password = 'postgres'
 }
