@@ -16,7 +16,7 @@ import java.util.Objects;
 @RestController
 public class ControllerImpl implements Controller{
 
-    private static final String URL_PREFIX = "https://miniurl/v1/";
+    private static final String URL_PREFIX = "localhost:9080/";
 
     @Autowired
     private UrlResolutionService urlResolutionService;

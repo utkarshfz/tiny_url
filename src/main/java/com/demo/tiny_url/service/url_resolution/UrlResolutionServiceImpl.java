@@ -35,6 +35,6 @@ public class UrlResolutionServiceImpl implements UrlResolutionService{
         if(aliasDetailsOptional.isPresent()) {
             return aliasDetailsOptional.get().getLongUrl();
         }
-        throw new NotFoundException(String.format("URL: {} does not exist", id));
+        throw new NotFoundException("URL does not exist");
     }
 }

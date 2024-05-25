@@ -12,4 +12,6 @@ public interface ShortUrlDetailsRepository extends CrudRepository<ShortUrlDetail
 
     @Override
     ShortUrlDetails save(ShortUrlDetails shortUrlDetails);
+
+    Optional<ShortUrlDetails> findByLongUrl(String longUrl);
 }
