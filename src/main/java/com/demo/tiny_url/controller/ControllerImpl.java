@@ -6,6 +6,7 @@ import com.demo.tiny_url.service.create_short_url.CreateShortUrlService;
 import com.demo.tiny_url.service.url_resolution.UrlResolutionService;
 import com.demo.tiny_url.service.validation.CreateShortUrlValidationService;
 import com.demo.tiny_url.service.validation.ResolveShortUrlIdValidationService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,7 @@ public class ControllerImpl implements Controller{
     private CreateShortUrlValidationService createShortUrlValidationService;
 
     @Override
+    @RateLimiter(name = "resolveUrlRateLimit")
     public ResponseEntity<Void> resolveUrl(String id) {
         resolveShortUrlIdValidationService.validate(id);
         String longUrl = urlResolutionService.process(id);
@@ -42,6 +44,7 @@ public class ControllerImpl implements Controller{
     }
 
     @Override
+    @RateLimiter(name = "createShortUrlRateLimit")
     public ResponseEntity<CreateShortUrlResponse> createShortURl(CreateShortUrlRequest body) {
         createShortUrlValidationService.validate(body);
         String shortUrl = URL_PREFIX;
