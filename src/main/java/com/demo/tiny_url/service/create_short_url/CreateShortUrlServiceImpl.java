@@ -1,5 +1,6 @@
 package com.demo.tiny_url.service.create_short_url;
 
+import com.demo.tiny_url.constants.TinyUrlConstants;
 import com.demo.tiny_url.entity.AliasDetails;
 import com.demo.tiny_url.entity.ShortUrlDetails;
 import com.demo.tiny_url.exception.model.ResourceAlreadyExistsException;
@@ -20,9 +21,6 @@ public class CreateShortUrlServiceImpl implements CreateShortUrlService{
     @Value("${application.shortUrl.expiry_time_days}")
     private int shortUrlExpiryTimeDays;
 
-    //should not include base62 characters
-    private final String SHORT_URL_SALT = "!";
-
     @Autowired
     private ShortUrlDetailsRepository shortUrlDetailsRepository;
 
@@ -39,7 +37,7 @@ public class CreateShortUrlServiceImpl implements CreateShortUrlService{
             String id = shortUrlDetailsOptional.get().getShortUrlId();
             return shortUrlDetailsRepository.save(new ShortUrlDetails(id, url, getExpiryDate())).getShortUrlId();
         }
-        String id = ApplicationUtil.toBase62(counterService.getCounter()).concat(SHORT_URL_SALT);
+        String id = ApplicationUtil.toBase62(counterService.getCounter()).concat(TinyUrlConstants.SHORT_URL_SALT);
         counterService.incrementCounter();
         ShortUrlDetails details = new ShortUrlDetails(id, url, getExpiryDate());
         return shortUrlDetailsRepository.save(details).getShortUrlId();

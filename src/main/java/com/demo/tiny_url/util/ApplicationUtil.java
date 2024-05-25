@@ -1,9 +1,10 @@
 package com.demo.tiny_url.util;
 
 
+import static com.demo.tiny_url.constants.TinyUrlConstants.BASE62_CHARS;
+
 public class ApplicationUtil {
 
-    private static final String BASE62_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static final int BASE = BASE62_CHARS.length();
 
     /**
