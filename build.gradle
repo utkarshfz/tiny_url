@@ -26,7 +26,7 @@ repositories {
 
 
 flyway {
-	url = 'jdbc:postgresql://localhost:5433/tiny_url'
+	url = 'jdbc:postgresql://localhost:5434/tiny_url'
 	user = 'postgres'
 	password = 'postgres'
 }
@@ -46,7 +46,6 @@ dependencies {
 	annotationProcessor "org.projectlombok:lombok:1.18.30"
 	testAnnotationProcessor "org.projectlombok:lombok:1.18.30"
 
-	testImplementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
