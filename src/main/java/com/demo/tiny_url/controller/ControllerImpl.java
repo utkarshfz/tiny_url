@@ -7,6 +7,7 @@ import com.demo.tiny_url.service.url_resolution.UrlResolutionService;
 import com.demo.tiny_url.service.validation.CreateShortUrlValidationService;
 import com.demo.tiny_url.service.validation.ResolveShortUrlIdValidationService;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -46,6 +47,7 @@ public class ControllerImpl implements Controller{
     @Override
     @RateLimiter(name = "createShortUrlRateLimit")
     public ResponseEntity<CreateShortUrlResponse> createShortURl(CreateShortUrlRequest body) {
+        preProcessCreateRequest(body);
         createShortUrlValidationService.validate(body);
         String shortUrl = URL_PREFIX;
         if(Objects.isNull(body.getAlias())) {
@@ -56,5 +58,15 @@ public class ControllerImpl implements Controller{
         CreateShortUrlResponse shortUrlResponse = new CreateShortUrlResponse();
         shortUrlResponse.setUrl(shortUrl);
         return new ResponseEntity<>(shortUrlResponse, HttpStatus.OK);
+    }
+
+    private void preProcessCreateRequest(CreateShortUrlRequest requestBody) {
+        requestBody.setUrl(requestBody.getUrl().trim());
+        requestBody.setUrl(requestBody.getUrl().replaceAll("/+$", Strings.EMPTY));
+        if(Objects.nonNull(requestBody.getAlias())) {
+            requestBody.setAlias(requestBody.getAlias().trim());
+        }
+
+
     }
 }
