@@ -6,6 +6,7 @@ import com.demo.tiny_url.exception.model.NotFoundException;
 import com.demo.tiny_url.repository.AliasDetailsRepository;
 import com.demo.tiny_url.repository.ShortUrlDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -26,6 +27,7 @@ public class UrlResolutionServiceImpl implements UrlResolutionService{
      * @return long url
      */
     @Override
+    @Cacheable(value="url_id", key ="#id", unless = "#result == null")
     public String process(String id) {
         Optional<ShortUrlDetails> shortUrlDetailsOptional = shortUrlDetailsRepository.findById(id);
         if(shortUrlDetailsOptional.isPresent()) {
