@@ -10,12 +10,12 @@ import com.demo.tiny_url.service.counter.CounterService;
 import com.demo.tiny_url.util.ApplicationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Component
+@Service
 public class CreateShortUrlServiceImpl implements CreateShortUrlService{
 
     @Value("${application.shortUrl.expiry_time_days}")

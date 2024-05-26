@@ -7,11 +7,11 @@ import com.demo.tiny_url.repository.AliasDetailsRepository;
 import com.demo.tiny_url.repository.ShortUrlDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component
+@Service
 public class UrlResolutionServiceImpl implements UrlResolutionService{
 
     @Autowired

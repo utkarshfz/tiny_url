@@ -1,12 +1,11 @@
 package com.demo.tiny_url.service.validation;
 
-import org.springframework.stereotype.Component;
-
-import javax.validation.ValidationException;
+import com.demo.tiny_url.exception.model.ValidationException;
+import org.springframework.stereotype.Service;
 
 import static com.demo.tiny_url.constants.TinyUrlConstants.CUSTOM_URL_ID_LENGTH_LIMIT;
 
-@Component
+@Service
 public class ResolveShortUrlValidationServiceImpl implements ResolveShortUrlIdValidationService{
     @Override
     public void validate(String id) {

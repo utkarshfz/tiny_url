@@ -15,10 +15,10 @@ public class ZookeeperCounterServiceImpl implements CounterService {
     private static final Logger logger = LoggerFactory.getLogger(ZookeeperCounterServiceImpl.class);
     private final ZookeeperClient zkClient;
 
-    private static final String PARENT_NODE_PATH = "/counter";
-    private static final String LOCK = "_LOCK";
+    public static final String PARENT_NODE_PATH = "/counter";
+    public static final String LOCK = "_LOCK";
     private String counterNodePath;
-    private static final String counterLimitsSeparatorElement = " ";
+    public static final String COUNTER_LIMITS_SEPARATOR_ELEMENT = " ";
 
     @Autowired
     ZookeeperCounterServiceImpl(ZookeeperClient zkClient) {
@@ -35,7 +35,7 @@ public class ZookeeperCounterServiceImpl implements CounterService {
     @Override
     public long getCounter() {
         long counter = zkClient.readData(counterNodePath);
-        List<Long> counterLimitList = zkClient.readData(PARENT_NODE_PATH, counterLimitsSeparatorElement);
+        List<Long> counterLimitList = zkClient.readData(PARENT_NODE_PATH, COUNTER_LIMITS_SEPARATOR_ELEMENT);
         if(counterLimitList.contains(counter)) {
             logger.info("Counter Node : {} exhausted, attempting to use another node", counterNodePath);
             zkClient.delete(counterNodePath);

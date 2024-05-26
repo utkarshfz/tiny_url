@@ -3,14 +3,14 @@ package com.demo.tiny_url.service.validation;
 import com.demo.tiny_url.exception.model.ValidationException;
 import com.demo.tiny_url.model.CreateShortUrlRequest;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 import java.util.Objects;
 
 import static com.demo.tiny_url.constants.TinyUrlConstants.*;
 
-@Component
+@Service
 public class CreateShortUrlValidationServiceImpl implements CreateShortUrlValidationService{
 
     @Override
@@ -18,7 +18,6 @@ public class CreateShortUrlValidationServiceImpl implements CreateShortUrlValida
         if(Objects.nonNull(request.getAlias())) {
             validateCustomUrlIdLength(request.getAlias());
             validateCustomUrlIdCharacters(request.getAlias());
-            validateInputNotBlank(request.getAlias());
         }
         validateInputNotBlank(request.getUrl());
         validateUrlLength(request.getUrl());
@@ -39,8 +38,10 @@ public class CreateShortUrlValidationServiceImpl implements CreateShortUrlValida
      * @param id custom url id
      */
     private void validateCustomUrlIdCharacters(String id) {
-        if(BASE62_CHARS.contains(id)) {
-            throw new ValidationException("Custom URL contains invalid characters only alphabets and numbers allowed");
+        for(int i = 0; i<id.length(); i++) {
+            if(!BASE62_CHARS.contains(Strings.EMPTY + id.charAt(i))) {
+                throw new ValidationException("Custom URL contains invalid characters only alphabets and numbers allowed");
+            }
         }
     }
 
