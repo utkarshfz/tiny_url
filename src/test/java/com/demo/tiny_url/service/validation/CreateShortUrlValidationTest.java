@@ -32,6 +32,14 @@ public class CreateShortUrlValidationTest {
         assertEquals(exception.getMessage(), "Custom URL contains invalid characters only alphabets and numbers allowed");
     }
 
+    @Test
+    public void shouldThrowExceptionIfCustomUrlIdBlankLimit() {
+        CreateShortUrlRequest request = CreateShortUrlRequest.builder().url("testUrl")
+                .alias("       ").build();
+        ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> createShortUrlValidationService.validate(request));
+        assertEquals(exception.getMessage(), "Input must not be blank");
+    }
+
 
     @Test
     public void shouldThrowExceptionIfUrlIsBlank() {

@@ -17,6 +17,7 @@ public class CreateShortUrlValidationServiceImpl implements CreateShortUrlValida
     public void validate(CreateShortUrlRequest request) {
         if(Objects.nonNull(request.getAlias())) {
             validateCustomUrlIdLength(request.getAlias());
+            validateInputNotBlank(request.getAlias());
             validateCustomUrlIdCharacters(request.getAlias());
         }
         validateInputNotBlank(request.getUrl());
