@@ -9,7 +9,7 @@ Converts long url to short url.
 
 [HLD](doc/HLD.drawio.html) @ doc/HLD.drawio.html
 
-[Code Coverage](build/jacoco/index.html) @ Code Coverage Report
+Code Coverage Report -> build/jacoco/index.html
 
 ### Create payload :
 ```
