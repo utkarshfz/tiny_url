@@ -37,6 +37,10 @@ curl --location --request PUT 'localhost:9080/create' \
   set /counter 9999999 19999999 29999999 39999999 
   ```
 - run zk server
+-  Run db migrations
+  ```
+  DB_USER_NAME='<your-db-user-name>' DB_PASSWORD='<your-db-password'> ./gradlew flywayMigrate
+  ```
 - Build jar file
     ```
     ./gradlew build

@@ -56,9 +56,9 @@ jacocoTestReport {
 }
 
 flyway {
-	url = 'jdbc:postgresql://localhost:5434/tiny_url'
-	user = 'postgres'
-	password = 'postgres'
+	url = 'jdbc:postgresql://localhost:5433/tiny_url'
+	user = System.getenv('DB_USER_NAME')
+	password = System.getenv('DB_PASSWORD')
 }
 
 dependencies {
