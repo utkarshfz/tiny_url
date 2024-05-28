@@ -5,6 +5,8 @@ Converts long url to short url.
 
 [API-Contract](doc/api.yaml) @ doc/api.yaml
 
+(** To View LLD/HLD open the specific files on (https://www.drawio.com/))
+
 [LLD](doc/LLD.drawio.html) @ doc/LLD.drawio.html
 
 [HLD](doc/HLD.drawio.html) @ doc/HLD.drawio.html
