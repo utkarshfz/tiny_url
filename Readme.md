@@ -16,7 +16,7 @@ Converts long url to short url.
 curl --location --request PUT 'localhost:9080/create' \
 --header 'Content-Type: application/json' \
 --data '{
-"url" : "https://stackoverflow.com/questions/11583562/how-to-kill-a-process-running-on-particular-port-in-linux",
+"url" : "https://stackoverflow.com/questions/965690/how-do-i-use-optional-parameters-in-java",
 "alias" : "test"
 }'
 ```
@@ -36,6 +36,7 @@ curl --location --request PUT 'localhost:9080/create' \
   set /counter/30_40M 30000000
   set /counter 9999999 19999999 29999999 39999999 
   ```
+- run zk server
 - Build jar file
     ```
     ./gradlew build

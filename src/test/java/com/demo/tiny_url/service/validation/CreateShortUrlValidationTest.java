@@ -37,7 +37,7 @@ public class CreateShortUrlValidationTest {
         CreateShortUrlRequest request = CreateShortUrlRequest.builder().url("testUrl")
                 .alias("       ").build();
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> createShortUrlValidationService.validate(request));
-        assertEquals(exception.getMessage(), "Input must not be blank");
+        assertEquals(exception.getMessage(), "Input must not be blank.");
     }
 
 
@@ -45,7 +45,7 @@ public class CreateShortUrlValidationTest {
     public void shouldThrowExceptionIfUrlIsBlank() {
         CreateShortUrlRequest request = CreateShortUrlRequest.builder().url("   ").build();
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> createShortUrlValidationService.validate(request));
-        assertEquals(exception.getMessage(), "Input must not be blank");
+        assertEquals(exception.getMessage(), "Input must not be blank.");
     }
 
     @Test
@@ -56,7 +56,7 @@ public class CreateShortUrlValidationTest {
         }
         CreateShortUrlRequest request = CreateShortUrlRequest.builder().url(url).build();
         ValidationException exception = Assertions.assertThrows(ValidationException.class, () -> createShortUrlValidationService.validate(request));
-        assertEquals(exception.getMessage(), "URL length limit exceed, max allowable limit is " + URL_LENGTH_LIMIT);
+        assertEquals(exception.getMessage(), "URL length exceeds allocated limit : " + URL_LENGTH_LIMIT);
     }
 
     @Test

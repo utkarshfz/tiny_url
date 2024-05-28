@@ -1,6 +1,7 @@
 package com.demo.tiny_url.service.counter;
 
 import com.demo.tiny_url.client.zookeeper.ZookeeperClient;
+import com.demo.tiny_url.model.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,6 @@ public class ZookeeperCounterServiceImpl implements CounterService {
             logger.info("Server querying counter node : {}", nodePath);
             return nodePath;
         }
-        throw new RuntimeException("[CRITICAL] Counters have been exhausted!");
+        throw new RuntimeException(Message.COUNTERS_EXHAUSTED.getMessage());
     }
 }

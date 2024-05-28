@@ -3,6 +3,7 @@ package com.demo.tiny_url.service.url_resolution;
 import com.demo.tiny_url.entity.AliasDetails;
 import com.demo.tiny_url.entity.ShortUrlDetails;
 import com.demo.tiny_url.exception.model.NotFoundException;
+import com.demo.tiny_url.model.Message;
 import com.demo.tiny_url.repository.AliasDetailsRepository;
 import com.demo.tiny_url.repository.ShortUrlDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,6 @@ public class UrlResolutionServiceImpl implements UrlResolutionService{
         if(aliasDetailsOptional.isPresent()) {
             return aliasDetailsOptional.get().getLongUrl();
         }
-        throw new NotFoundException("URL does not exist");
+        throw new NotFoundException(Message.URL_NOT_EXISTS.getMessage());
     }
 }

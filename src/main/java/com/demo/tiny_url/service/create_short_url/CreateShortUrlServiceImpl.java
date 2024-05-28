@@ -4,6 +4,7 @@ import com.demo.tiny_url.constants.TinyUrlConstants;
 import com.demo.tiny_url.entity.AliasDetails;
 import com.demo.tiny_url.entity.ShortUrlDetails;
 import com.demo.tiny_url.exception.model.ResourceAlreadyExistsException;
+import com.demo.tiny_url.model.Message;
 import com.demo.tiny_url.repository.AliasDetailsRepository;
 import com.demo.tiny_url.repository.ShortUrlDetailsRepository;
 import com.demo.tiny_url.service.counter.CounterService;
@@ -50,7 +51,7 @@ public class CreateShortUrlServiceImpl implements CreateShortUrlService{
             AliasDetails aliasDetails = new AliasDetails(alias, url, getExpiryDate());
             return aliasDetailsRepository.save(aliasDetails).getAlias();
         }
-        throw new ResourceAlreadyExistsException("Custom url id " + alias + " not available");
+        throw new ResourceAlreadyExistsException(Message.RESOURCE_ALREADY_EXISTS.getMessage(alias));
     }
 
     private LocalDateTime getExpiryDate() {

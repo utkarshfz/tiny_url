@@ -1,6 +1,7 @@
 package com.demo.tiny_url.service.validation;
 
 import com.demo.tiny_url.exception.model.ValidationException;
+import com.demo.tiny_url.model.Message;
 import org.springframework.stereotype.Service;
 
 import static com.demo.tiny_url.constants.TinyUrlConstants.CUSTOM_URL_ID_LENGTH_LIMIT;
@@ -14,7 +15,7 @@ public class ResolveShortUrlValidationServiceImpl implements ResolveShortUrlIdVa
 
     private void validateShortUrlIdLength(String id) {
         if(id.length() > CUSTOM_URL_ID_LENGTH_LIMIT) {
-            throw new ValidationException("Short URL ID length exceeds allocated limit : " + CUSTOM_URL_ID_LENGTH_LIMIT);
+            throw new ValidationException(Message.SHORT_URL_ID_EXCEEDS_ALLOCATED_LIMIT.getMessage(CUSTOM_URL_ID_LENGTH_LIMIT));
         }
     }
 }
