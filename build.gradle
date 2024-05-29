@@ -42,7 +42,7 @@ jacocoTestReport {
 					"**/entity/*",
 					"**/exception/*",
 					"**/constants/*",
-					"**/configurations/*",
+					"**/configuration/*",
 					"**/repository/*"
 			])
 		}))
